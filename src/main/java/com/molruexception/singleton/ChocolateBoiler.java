@@ -1,6 +1,9 @@
 package com.molruexception.singleton;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ChocolateBoiler {
+
     private boolean empty;
     private boolean boiled;
     private volatile static ChocolateBoiler uniqueInstance;
@@ -26,21 +29,30 @@ public class ChocolateBoiler {
         if (isEmpty()) {
             empty = false;
             boiled = false;
-            // fill the boiler with a milk/chocolate mixture
+            ChocolateLogger.getInstance().logEvent(String.format(
+                    "[%s] fill the boiler with a milk/chocolate mixture",
+                    Thread.currentThread().getName()
+            ));
         }
     }
 
     public void drain() {
         if (!isEmpty() && isBoiled()) {
-            // drain the boiled milk and chocolate
             empty = true;
+            ChocolateLogger.getInstance().logEvent(String.format(
+                    "[%s] drain the boiled milk and chocolate",
+                    Thread.currentThread().getName()
+            ));
         }
     }
 
     public void boil() {
         if (!isEmpty() && !isBoiled()) {
-            // bring the contents to a boil
             boiled = true;
+            ChocolateLogger.getInstance().logEvent(String.format(
+                    "[%s] bring the contents to a boil",
+                    Thread.currentThread().getName()
+            ));
         }
     }
 
