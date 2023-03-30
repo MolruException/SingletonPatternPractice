@@ -17,7 +17,9 @@ public class ChocolateLogger {
         return instance;
     }
 
-    private ChocolateLogger() {}
+    private ChocolateLogger() {
+        System.out.println("Creating unique instance of Logger");
+    }
 
     public void logEvent(@NotNull String event) {
         System.out.println(event);
